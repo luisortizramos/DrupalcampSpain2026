@@ -1,0 +1,16 @@
+uuid: 5269f1e6-dc7a-4290-998b-487407612440
+langcode: es
+status: true
+dependencies:
+  enforced:
+    module:
+      - ai_ckeditor
+_core:
+  default_config_hash: T-iy6jtCQXaCSoWd6xaNyUDvZ9ZAFFtyqo40DYqYQ9A
+id: ai_ckeditor_summarize__default
+label: 'Default prompt for summarizing CKEditor text'
+type: ai_ckeditor_summarize
+prompt: |
+  Summarize the following text. The summary MUST be written in the exact same language as the original text - do not translate it to any other language. Do not return the original text or restate it word-for-word.
+  Here is the original text:
+  {inputText}

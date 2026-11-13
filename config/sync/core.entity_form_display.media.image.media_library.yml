@@ -1,0 +1,48 @@
+uuid: e60f04ae-ead9-4bf5-bf13-f48fa2baf7d9
+langcode: es
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - field.field.media.image.ai_automator_status
+    - field.field.media.image.field_media_image
+    - image.style.thumbnail
+    - media.type.image
+  module:
+    - field_widget_actions
+    - image
+id: media.image.media_library
+targetEntityType: media
+bundle: image
+mode: media_library
+content:
+  field_media_image:
+    type: image_image
+    weight: -50
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings:
+      field_widget_actions:
+        a38ab3f9-a317-437a-82e1-f8fba20860f3:
+          plugin_id: automator_alt_text
+          enabled: true
+          automatic: false
+          button_label: 'Genera el texto alternativo'
+          multiple: true
+          weight: 0
+          enable_refinement: false
+          refinement_modal_title: ''
+          show_result_message: false
+          message_success: ''
+          message_empty: ''
+          settings:
+            automator_id: media.image.field_media_image.default
+hidden:
+  ai_automator_status: true
+  created: true
+  langcode: true
+  name: true
+  status: true
+  uid: true

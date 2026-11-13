@@ -1,0 +1,66 @@
+uuid: 09469bc5-6f1e-4862-9457-6528ed955544
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_body
+    - field.storage.node.field_tags
+    - search_api.server.ai_search
+  module:
+    - node
+    - taxonomy
+id: content_ai_search
+name: 'Búsqueda de contenido con IA'
+description: ''
+read_only: false
+field_settings:
+  field_body:
+    label: Cuerpo
+    datasource_id: 'entity:node'
+    property_path: field_body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_body
+  name:
+    label: 'Etiquetas » Término de taxonomía » Nombre'
+    datasource_id: 'entity:node'
+    property_path: 'field_tags:entity:name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_tags
+      module:
+        - taxonomy
+  title:
+    label: Título
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    dependencies:
+      module:
+        - node
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  custom_value: {  }
+  entity_type: {  }
+  language_with_fallback: {  }
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  delete_on_fail: true
+  index_directly: true
+  track_changes_in_references: true
+server: ai_search

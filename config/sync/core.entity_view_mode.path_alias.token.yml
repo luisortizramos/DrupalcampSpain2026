@@ -1,0 +1,11 @@
+uuid: ff45d355-21f1-4950-b473-13a1f763b952
+langcode: es
+status: true
+dependencies:
+  module:
+    - path_alias
+id: path_alias.token
+label: Comodín
+description: null
+targetEntityType: path_alias
+cache: true

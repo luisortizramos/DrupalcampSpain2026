@@ -1,0 +1,46 @@
+uuid: da10412a-07e9-47e4-a9a5-6f33411fa952
+langcode: en
+status: true
+dependencies:
+  module:
+    - ai_chatbot
+  theme:
+    - claro
+id: claro_aichatbotdeepchat
+theme: claro
+region: content
+weight: 0
+provider: null
+plugin: ai_deepchat_block
+settings:
+  id: ai_deepchat_block
+  label: 'AI Chatbot (DeepChat)'
+  label_display: visible
+  provider: ai_chatbot
+  bot_name: Assistant
+  bot_image: /modules/contrib/ai/modules/ai_chatbot/assets/ai-icon-gradient.svg
+  use_username: 0
+  default_username: ''
+  use_avatar: 0
+  default_avatar: ''
+  first_message: ''
+  loading_message: ''
+  agent_delegation_message: ''
+  stream: 0
+  toggle_state: remember
+  width: 100%
+  height: auto
+  placement: toolbar
+  show_copy_icon: true
+  collapse_minimal: false
+  style_file: 'module:ai_chatbot:toolbar.yml'
+  disable_csrf: false
+  chat_processor_plugin: ai_assistant_api_processor
+  plugin_configuration:
+    assistant_id: content_ai_search_assistant
+    stream_output: true
+    verbose_mode: true
+    show_structured_results: false
+  expansion_method: expand
+  load_strategy: eager
+visibility: {  }

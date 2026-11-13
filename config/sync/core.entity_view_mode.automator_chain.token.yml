@@ -1,0 +1,11 @@
+uuid: 4ac5d9c7-e327-4cb3-857c-1033a72d2bd2
+langcode: es
+status: true
+dependencies:
+  module:
+    - ai_automators
+id: automator_chain.token
+label: Comodín
+description: null
+targetEntityType: automator_chain
+cache: true

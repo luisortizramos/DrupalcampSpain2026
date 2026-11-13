@@ -1,0 +1,42 @@
+uuid: b3b9fe30-7738-4037-bae2-e65783ac702f
+langcode: es
+status: true
+dependencies:
+  module:
+    - ai_search
+id: content_ai_search_assistant
+label: 'Busqueda de contenido con IA'
+description: 'Busqueda de contenido con IA'
+system_prompt: 'Se amable. Utiliza solo la información de nuestro sitio web. No inventes datos.'
+secured_system_prompt: null
+tools:
+  'ai_search:rag_search': true
+tool_settings: {  }
+orchestration_agent: true
+triage_agent: false
+max_loops: 3
+max_loops_message: null
+default_information_tools: null
+tool_usage_limits:
+  'ai_search:rag_search':
+    index:
+      values:
+        - content_ai_search
+      action: force_value
+      hide_property: 1
+    amount:
+      values:
+        - '5'
+      action: force_value
+      hide_property: 1
+    min_score:
+      values:
+        - '0.2'
+      action: force_value
+      hide_property: 1
+exclude_users_role: false
+masquerade_roles: {  }
+structured_output_enabled: null
+structured_output_schema: null
+hostname_filter_disabled: null
+guardrail_set: null

@@ -1,0 +1,7 @@
+host: pgvector
+port: 5432
+username: ddev_user
+password: postgres
+default_database: ddev_embedding_db
+_core:
+  default_config_hash: zEgXHS20RKg5hj3QNhMcDQxhQd1gVO3_mE6qxdKWSfA

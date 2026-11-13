@@ -1,0 +1,11 @@
+uuid: db351f10-949c-41d2-b3d0-c8aed61244da
+langcode: es
+status: true
+dependencies: {  }
+name: Artículo
+type: article
+description: null
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

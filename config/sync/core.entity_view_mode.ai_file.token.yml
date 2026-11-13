@@ -1,0 +1,11 @@
+uuid: a5dd3a13-bb03-433f-88ad-0f8b9858878f
+langcode: es
+status: true
+dependencies:
+  module:
+    - ai
+id: ai_file.token
+label: Comodín
+description: null
+targetEntityType: ai_file
+cache: true

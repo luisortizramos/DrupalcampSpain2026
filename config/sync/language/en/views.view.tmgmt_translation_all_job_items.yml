@@ -1,0 +1,74 @@
+label: 'Translation All Job Items'
+display:
+  default:
+    display_title: Master
+    display_options:
+      title: 'Job Items'
+      fields:
+        state:
+          label: State
+        label:
+          label: Label
+        type:
+          label: Type
+        source_language:
+          label: From
+          separator: ', '
+        target_language:
+          label: To
+          separator: ', '
+        progress:
+          label: Progress
+        word_count:
+          label: Word
+          separator: ', '
+        tags_count:
+          label: Tags
+          separator: ', '
+        changed:
+          label: Changed
+          separator: ', '
+        operations:
+          label: Operations
+      pager:
+        options:
+          tags:
+            next: 'Next ›'
+            previous: '‹ Previous'
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
+      exposed_form:
+        options:
+          submit_button: Apply
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      empty:
+        area_text_custom:
+          content: 'No job items for the current selection.'
+      filters:
+        state:
+          expose:
+            label: States
+          group_info:
+            label: State
+        source_language:
+          expose:
+            label: 'Source language'
+        target_language:
+          expose:
+            label: 'Target language'
+        job_type:
+          expose:
+            label: 'Job type'
+  page_1:
+    display_title: Page
+    display_options:
+      menu:
+        title: 'Job Items'
+        description: 'Overview of existing job items.'

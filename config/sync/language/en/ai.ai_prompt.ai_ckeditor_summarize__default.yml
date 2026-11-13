@@ -1,0 +1,5 @@
+label: 'Default prompt for summarizing CKEditor text'
+prompt: |
+  Summarize the following text. The summary MUST be written in the exact same language as the original text - do not translate it to any other language. Do not return the original text or restate it word-for-word.
+  Here is the original text:
+  {inputText}

@@ -1,0 +1,32 @@
+uuid: c0534cee-fe7b-460c-8123-979e0da64600
+langcode: es
+status: true
+dependencies:
+  module:
+    - ai_search
+    - ai_vdb_provider_postgres
+id: ai_search
+name: 'Búsqueda con IA'
+description: ''
+backend: search_api_ai_search
+backend_config:
+  chat_model: ''
+  database: postgres
+  database_settings:
+    database_name: ddev_embedding_db
+    collection: ai_search
+    metric: cosine_similarity
+    vector_index_strategy: none
+  embeddings_engine: openai__text-embedding-3-small
+  embeddings_engine_configuration:
+    set_dimensions: false
+    dimensions: 1536
+  embedding_strategy: contextual_chunks
+  embedding_strategy_configuration:
+    chunk_size: '500'
+    embedding_collection_size: 50
+    chunk_min_overlap: '100'
+    contextual_content_max_percentage: '30'
+    skip_moderation: false
+  embedding_strategy_details: ''
+  include_raw_embedding_vector: false

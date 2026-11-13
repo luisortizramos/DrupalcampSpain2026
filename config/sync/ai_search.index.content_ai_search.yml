@@ -1,0 +1,15 @@
+index_id: content_ai_search
+control_field_max_length: false
+exclude_chunk_from_metadata: false
+exclude_title: false
+indexing_options:
+  field_body:
+    indexing_option: main_content
+    max: -1
+  name:
+    indexing_option: contextual_content
+    max: -1
+  title:
+    indexing_option: contextual_content
+    max: -1
+results_cache_mode: none

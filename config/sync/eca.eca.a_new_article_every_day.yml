@@ -1,0 +1,313 @@
+uuid: 6efed292-f820-4233-9c8e-1c8dda1b9c8b
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.media.image.field_media_image
+    - field.field.node.article.field_body
+    - field.field.node.article.field_image
+    - field.storage.media.field_media_image
+    - field.storage.node.field_body
+    - field.storage.node.field_image
+    - media.type.image
+    - node.type.article
+    - views.view.articles
+  module:
+    - ai_integration_eca
+    - ai_provider_openai
+    - eca_base
+    - eca_content
+    - eca_user
+    - eca_views
+    - modeler_api
+third_party_settings:
+  modeler_api:
+    modeler_id: workflow_modeler
+    data: 'hash:deaff1d9cf0bc591150382ea17e3d209'
+    label: 'Un nuevo artículo cada dia'
+id: a_new_article_every_day
+weight: 0
+template: false
+events:
+  eca_cron_event_eab27fve:
+    plugin: 'eca_base:eca_cron'
+    label: 'ECA cron event'
+    configuration:
+      frequency: '0 0 * * *'
+    successors:
+      -
+        id: user_switch_current_account_50aqc1tp
+        condition: ''
+  eca_custom_event_mobli4zu:
+    plugin: 'eca_base:eca_custom'
+    label: 'ECA custom event'
+    configuration:
+      event_id: ''
+    successors:
+      -
+        id: user_switch_current_account_50aqc1tp
+        condition: ''
+conditions:
+  2269b077-2e53-4f67-8f24-955497958f9e:
+    plugin: eca_count
+    label: 'Compare number of list items'
+    configuration:
+      negate: false
+      left: articles
+      right: '0'
+      operator: equal
+      type: numeric
+      case: false
+  69cda9f6-9279-4a51-b302-6d868a4c7fe2:
+    plugin: eca_count
+    label: 'Compare number of list items'
+    configuration:
+      negate: false
+      left: articles
+      right: '0'
+      operator: greaterthan
+      type: numeric
+      case: false
+gateways: {  }
+actions:
+  user_switch_current_account_50aqc1tp:
+    label: 'User: switch current account'
+    plugin: eca_switch_account
+    configuration:
+      user_id: '1'
+    successors:
+      -
+        id: carga_labels_de_artculos_uqa0ghms
+        condition: ''
+  carga_labels_de_artculos_uqa0ghms:
+    label: 'Carga artículos'
+    plugin: eca_views_query
+    configuration:
+      token_name: articles
+      view_id: articles
+      display_id: default
+      arguments: ''
+    successors:
+      -
+        id: token_set_value_k7jju16f
+        condition: ''
+  token_set_value_k7jju16f:
+    label: 'Crea el token labels'
+    plugin: eca_token_set_value
+    configuration:
+      token_name: labels
+      token_value: ''
+      use_yaml: false
+      validate_yaml: false
+    successors:
+      -
+        id: list_remove_entity_bnl0xmva
+        condition: ''
+  list_remove_entity_bnl0xmva:
+    label: 'List: remove entity'
+    plugin: eca_list_remove_entity
+    configuration:
+      token_name: existing_article
+      method: first
+      index: ''
+      list_token: articles
+    successors:
+      -
+        id: token_set_value_apbc1cyf
+        condition: ''
+  token_set_value_apbc1cyf:
+    label: 'Token: set value'
+    plugin: eca_token_set_value
+    configuration:
+      token_name: labels
+      token_value: '[labels], [existing_article.title]'
+      use_yaml: false
+      validate_yaml: false
+    successors:
+      -
+        id: chat_omb0t2gw
+        condition: 2269b077-2e53-4f67-8f24-955497958f9e
+      -
+        id: list_remove_entity_bnl0xmva
+        condition: 69cda9f6-9279-4a51-b302-6d868a4c7fe2
+  chat_omb0t2gw:
+    label: 'Genera el título'
+    plugin: ai_integration_eca_execute_chat
+    configuration:
+      model: openai__gpt-4.1
+      token_result: label
+      config: ''
+      system_prompt: ''
+      prompt: 'Dime, en castellano, el nombre de un animal. Pero solo el nombre del animal, sin ningún comentario adicional. No debe ser nunca, bajo ningun concepto, ninguno de los que aparecen en la siguiente lista: [labels]'
+      schema: ''
+      files: ''
+      files_input_type: path
+    successors:
+      -
+        id: chat_uc89z7s5
+        condition: ''
+  chat_uc89z7s5:
+    label: 'Genera el cuerpo'
+    plugin: ai_integration_eca_execute_chat
+    configuration:
+      model: openai__gpt-4.1
+      token_result: body
+      config: ''
+      system_prompt: ''
+      prompt: 'Genera entre 1 y 4 párrafos de texto describiendo al [label]. Devuelve HTML sencillo, con solo etiquetas "p"'
+      schema: ''
+      files: ''
+      files_input_type: path
+    successors:
+      -
+        id: text_to_image_1prnqzqa
+        condition: ''
+  text_to_image_1prnqzqa:
+    label: 'Genera el archivo de imagen'
+    plugin: ai_integration_eca_execute_text_to_image
+    configuration:
+      model: openai__gpt-image-1-mini
+      token_result: file
+      config: ''
+      prompt: 'Genera una imagen hyperrealista sobre un [label]. Ten en cuenta lo descrito en [body]. '
+      output_type: managed_file
+      destination: 'public://'
+      filename: '[label].png'
+    successors:
+      -
+        id: chat_tq3fe3x0
+        condition: ''
+  chat_tq3fe3x0:
+    label: 'Genera el texto alternativo del archivo de imagen'
+    plugin: ai_integration_eca_execute_chat
+    configuration:
+      model: openai__gpt-4.1
+      token_result: alt
+      config: ''
+      system_prompt: ''
+      prompt: 'Genera el texto alternativo de la imagen. No añadas ningún comentario por tu parte, solo quiero el texto alternativo.'
+      schema: ''
+      files: '[file]'
+      files_input_type: fid
+    successors:
+      -
+        id: entity_create_new_39gx3pdi
+        condition: ''
+  entity_create_new_39gx3pdi:
+    label: 'Crea el media imagen'
+    plugin: eca_new_entity
+    configuration:
+      token_name: image
+      type: 'media image'
+      langcode: es
+      label: '[label]'
+      published: true
+      owner: '1'
+    successors:
+      -
+        id: entity_set_field_value_sr8t6c7o
+        condition: ''
+  entity_set_field_value_sr8t6c7o:
+    label: 'Asigna el archivo'
+    plugin: eca_set_field_value
+    configuration:
+      field_name: field_media_image.target_id
+      field_value: '[file]'
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: image
+    successors:
+      -
+        id: entity_set_field_value_ekjhnnp5
+        condition: ''
+  entity_set_field_value_ekjhnnp5:
+    label: 'Asigna el texto alternativo'
+    plugin: eca_set_field_value
+    configuration:
+      field_name: field_media_image.alt
+      field_value: '[alt]'
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: image
+    successors:
+      -
+        id: entity_save_h5yw1491
+        condition: ''
+  entity_save_h5yw1491:
+    label: 'Guarda el media imagen'
+    plugin: eca_save_entity
+    configuration:
+      object: imagen
+    successors:
+      -
+        id: entity_create_new_xjw6nanz
+        condition: ''
+  entity_create_new_xjw6nanz:
+    label: 'Crea el artículo'
+    plugin: eca_new_entity
+    configuration:
+      token_name: article
+      type: 'node article'
+      langcode: es
+      label: '[label]'
+      published: true
+      owner: '1'
+    successors:
+      -
+        id: entity_set_field_value_cnjbg7ks
+        condition: ''
+  entity_set_field_value_cnjbg7ks:
+    label: 'Asigna el cuerpo'
+    plugin: eca_set_field_value
+    configuration:
+      field_name: field_body.value
+      field_value: '[body] '
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: article
+    successors:
+      -
+        id: entity_set_field_value_xvokbqeq
+        condition: ''
+  entity_set_field_value_xvokbqeq:
+    label: 'Asigna el formato del cuerpo'
+    plugin: eca_set_field_value
+    configuration:
+      field_name: field_body.format
+      field_value: full_html
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: article
+    successors:
+      -
+        id: entity_set_field_value_r5laxy9h
+        condition: ''
+  entity_set_field_value_r5laxy9h:
+    label: 'Asigna la imagen'
+    plugin: eca_set_field_value
+    configuration:
+      field_name: field_image.target_id
+      field_value: '[image]'
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: article
+    successors:
+      -
+        id: entity_save_cn8nsgbr
+        condition: ''
+  entity_save_cn8nsgbr:
+    label: 'Guarda el artículo'
+    plugin: eca_save_entity
+    configuration:
+      object: article
+    successors: {  }

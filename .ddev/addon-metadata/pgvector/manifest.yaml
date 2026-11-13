@@ -1,0 +1,8 @@
+name: pgvector
+repository: robertoperuzzo/ddev-pgvector
+version: 0.0.1
+install_date: "2026-11-12T17:46:53+01:00"
+project_files:
+    - docker-compose.pgvector.yaml
+global_files: []
+removal_actions: []

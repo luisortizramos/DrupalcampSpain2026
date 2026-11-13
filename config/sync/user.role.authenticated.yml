@@ -1,0 +1,16 @@
+uuid: f5d32c87-c45f-4f6c-8cc7-519ecb17c746
+langcode: es
+status: true
+dependencies:
+  module:
+    - media
+    - system
+_core:
+  default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
+id: authenticated
+label: 'Usuario autenticado'
+weight: 1
+is_admin: false
+permissions:
+  - 'access content'
+  - 'view media'

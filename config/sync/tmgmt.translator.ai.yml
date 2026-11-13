@@ -1,0 +1,25 @@
+uuid: 2227ee57-4fe5-47c7-988c-db3044d95d7f
+langcode: es
+status: true
+dependencies:
+  module:
+    - ai_tmgmt
+name: ai
+label: AI
+description: 'AI Translator service.'
+auto_accept: false
+weight: null
+plugin: ai
+settings:
+  model_selection_type: ai_translate
+  chat_model: ''
+  tokenizer_model: openai__gpt-4.1
+  advanced:
+    prompt: 'Translate from %source% into %target% language'
+    max_tokens: 4096
+    rate_limit_delay: 300
+    max_attempts: 3
+    html_filter_notice: ''
+remote_languages_mappings:
+  es: es
+  en: en

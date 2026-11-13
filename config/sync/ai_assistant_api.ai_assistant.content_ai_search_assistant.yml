@@ -1,0 +1,29 @@
+uuid: bddc189b-0e81-4975-a06f-1f71e2b38365
+langcode: es
+status: true
+dependencies: {  }
+id: content_ai_search_assistant
+label: 'Busqueda de contenido con IA'
+description: 'Busqueda de contenido con IA'
+system_prompt: ''
+pre_action_prompt: ''
+instructions: 'Se amable. Utiliza solo la información de nuestro sitio web. No inventes datos.'
+allow_history: ''
+error_message: 'I am sorry, something went terribly wrong. Please try to ask me again.'
+specific_error_messages:
+  AiBadRequestException: ''
+  AiRateLimitException: ''
+  AiQuotaException: ''
+  AiSetupFailureException: ''
+  AiRequestErrorException: ''
+llm_provider: openai
+llm_model: gpt-5.4
+llm_configuration:
+  max_completion_tokens: 4096
+  reasoning_effort: medium
+actions_enabled: {  }
+roles:
+  anonymous: 0
+  authenticated: 0
+use_function_calling: false
+ai_agent: content_ai_search_assistant

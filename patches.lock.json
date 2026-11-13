@@ -1,0 +1,17 @@
+{
+    "_hash": "3c5ba0104b6651ea5b3cd99099b744a086b05c84fd7a5eeb3d85f7455531131f",
+    "patches": {
+        "drupal/ai": [
+            {
+                "package": "drupal/ai",
+                "description": "Issue #3586747: ImageAltText field widget action no longer fills the alt field in the media library add form",
+                "url": "https://git.drupalcode.org/project/ai/-/merge_requests/2039.patch",
+                "sha256": "e90cb9edb1f82037daaa84af6e9b9a12e42eb5eee1418dae674f52ece9efac5e",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ]
+    }
+}

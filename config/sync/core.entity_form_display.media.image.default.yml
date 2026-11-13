@@ -1,0 +1,80 @@
+uuid: 47d10a68-438e-4811-bb07-a50edaa1450f
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.media.image.ai_automator_status
+    - field.field.media.image.field_media_image
+    - image.style.thumbnail
+    - media.type.image
+  module:
+    - field_widget_actions
+    - image
+id: media.image.default
+targetEntityType: media
+bundle: image
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_media_image:
+    type: image_image
+    weight: 0
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings:
+      field_widget_actions:
+        d11c7ba4-45ce-4657-9aa4-2ed2c1320cfa:
+          plugin_id: automator_alt_text
+          enabled: true
+          automatic: false
+          button_label: 'Genera el texto alternativo'
+          multiple: true
+          weight: 0
+          enable_refinement: false
+          refinement_modal_title: ''
+          show_result_message: false
+          message_success: ''
+          message_empty: ''
+          settings:
+            automator_id: media.image.field_media_image.default
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  ai_automator_status: true

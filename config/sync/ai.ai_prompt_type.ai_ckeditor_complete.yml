@@ -1,0 +1,13 @@
+uuid: f6d2128e-4af2-4459-9ef5-210d37a0c82b
+langcode: es
+status: true
+dependencies:
+  enforced:
+    module:
+      - ai_ckeditor
+_core:
+  default_config_hash: 0KwDGQRMyNT7AeR-GFe8Kk50kkj-AB4o-VRI8IhgVL0
+id: ai_ckeditor_complete
+label: 'AI CKEditor completion prompt'
+variables: {  }
+tokens: {  }

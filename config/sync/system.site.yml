@@ -1,0 +1,15 @@
+_core:
+  default_config_hash: HlN7eAN2N4JIHsYv56V4E7sqC9bS609KwvGFjyD_mgk
+langcode: es
+uuid: daebe661-843c-4e50-bf7f-44ee6cb40d30
+name: 'Drupalcamp Spain 2026'
+mail: admin@ateneatech.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /user/login
+admin_compact_mode: false
+weight_select_max: 100
+default_langcode: es
+mail_notification: null

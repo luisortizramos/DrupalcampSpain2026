@@ -1,0 +1,13 @@
+uuid: b0f350ee-422a-478a-9307-cd1fab99509d
+langcode: es
+status: true
+dependencies:
+  enforced:
+    module:
+      - ai_content_suggestions
+_core:
+  default_config_hash: zH424sYShmZlcwjEz3MWX0D9JLR7CMKx3olXmqKcdKc
+id: suggest_tags
+label: 'Suggest tags'
+variables: {  }
+tokens: {  }
