@@ -1,0 +1,71 @@
+uuid: e7ba3619-e6a6-46f5-bfb9-c9e9367bdb34
+langcode: es
+status: true
+dependencies:
+  module:
+    - ai_integration_eca
+    - ai_provider_openai
+    - comment
+    - eca_base
+    - eca_content
+    - modeler_api
+third_party_settings:
+  modeler_api:
+    modeler_id: workflow_modeler
+    data: 'hash:2ef5fab6be56b7c8506f51e5d0d15554'
+    label: 'Aprobar comentarios'
+id: approve_comments
+weight: 0
+template: false
+events:
+  insert_content_entity_ml3xpqbu:
+    plugin: 'content_entity:insert'
+    label: 'New comment'
+    configuration:
+      type: 'comment _all'
+    successors:
+      -
+        id: chat_y7bdhooa
+        condition: ''
+conditions:
+  df706df4-5a8b-4405-9564-aea61e71c6cc:
+    plugin: eca_scalar
+    label: 'Compare two scalar values'
+    configuration:
+      negate: false
+      left: '[assesment]'
+      right: '1'
+      operator: equal
+      type: value
+      case: false
+gateways: {  }
+actions:
+  chat_y7bdhooa:
+    label: 'Valora el comentario'
+    plugin: ai_integration_eca_execute_chat
+    configuration:
+      model: openai__gpt-4.1
+      token_result: assesment
+      config: ''
+      system_prompt: ''
+      prompt: |
+        A continuación puedes leer el asunto y el contenido de un comentario recibido en la web. Si alguno de los 2 contiene la palabra "feo" o consideras que es inapropiado o SPAM, devuelve únicamente un 1.
+
+        Asunto:
+        "[entity:label]"
+
+        Contenido:
+        "[entity:body]"
+      schema: ''
+      files: ''
+      files_input_type: path
+    successors:
+      -
+        id: select_action_wu29o92v
+        condition: df706df4-5a8b-4405-9564-aea61e71c6cc
+  select_action_wu29o92v:
+    label: 'Despublicar comentario'
+    plugin: 'entity:unpublish_action:comment'
+    configuration:
+      object: entity
+    successors: {  }

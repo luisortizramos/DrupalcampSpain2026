@@ -1,0 +1,28 @@
+uuid: b3271ce0-403a-46ca-9722-ac68492caf79
+langcode: es
+status: true
+dependencies:
+  config:
+    - comment.type.default
+    - field.storage.comment.comment_body
+    - filter.format.plain_text
+  module:
+    - text
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: comment.default.comment_body
+field_name: comment_body
+entity_type: comment
+bundle: default
+label: Comment
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - plain_text
+field_type: text_long

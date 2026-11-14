@@ -1,0 +1,11 @@
+uuid: 9a9955cf-c288-407c-997a-15112d530df2
+langcode: es
+status: true
+dependencies:
+  config:
+    - comment.type.default
+id: comment.default
+target_entity_type_id: comment
+target_bundle: default
+default_langcode: site_default
+language_alterable: false

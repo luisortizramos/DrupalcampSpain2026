@@ -1,0 +1,8 @@
+uuid: b8886e5b-146b-41e7-8fae-2b15b9049e45
+langcode: es
+status: true
+dependencies: {  }
+id: default
+label: 'Por defecto'
+target_entity_type_id: node
+description: ''

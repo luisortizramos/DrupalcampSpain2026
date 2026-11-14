@@ -5,11 +5,12 @@ dependencies:
   config:
     - field.field.node.article.ai_automator_status
     - field.field.node.article.field_body
+    - field.field.node.article.field_comments
     - field.field.node.article.field_image
     - field.field.node.article.field_tags
     - node.type.article
   module:
-    - field_widget_actions
+    - comment
     - media_library
     - text
 id: node.article.default
@@ -33,6 +34,12 @@ content:
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
+  field_comments:
+    type: comment_default
+    weight: 124
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_image:
     type: media_library_widget
     weight: 122
@@ -49,20 +56,7 @@ content:
       match_limit: 10
       size: 60
       placeholder: ''
-    third_party_settings:
-      field_widget_actions:
-        06f7f334-4952-4131-aebe-76d5695d00df:
-          plugin_id: automator_autocomplete_tags_on_taxonomy
-          enabled: true
-          automatic: false
-          button_label: 'Genera etiquetas'
-          multiple: true
-          weight: 0
-          show_result_message: false
-          message_success: ''
-          message_empty: ''
-          settings:
-            automator_id: node.article.field_tags.default
+    third_party_settings: {  }
   langcode:
     type: language_select
     weight: 2

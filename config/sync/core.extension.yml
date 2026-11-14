@@ -18,6 +18,7 @@ module:
   ai_vdb_provider_postgres: 0
   block: 0
   ckeditor5: 0
+  comment: 0
   config: 0
   contextual: 0
   dblog: 0

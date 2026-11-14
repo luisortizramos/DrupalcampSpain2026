@@ -9,7 +9,7 @@ label: 'Genera etiquetas'
 rule: llm_taxonomy
 input_mode: token
 weight: 100
-worker_type: field_widget_actions
+worker_type: direct
 entity_type: node
 bundle: article
 field_name: field_tags
@@ -42,7 +42,7 @@ plugin_config:
   automator_edit_mode: 0
   automator_label: 'Genera etiquetas'
   automator_weight: '100'
-  automator_worker_type: field_widget_actions
+  automator_worker_type: direct
   automator_queue_allow_requeue: 0
   automator_guardrail_set_id: ''
   automator_ai_provider: default_json
