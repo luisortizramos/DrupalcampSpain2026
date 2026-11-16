@@ -8,7 +8,10 @@ description: 'Busqueda de contenido con IA'
 system_prompt: ''
 pre_action_prompt: ''
 instructions: 'Se amable. Utiliza solo la información de nuestro sitio web. No inventes datos.'
-allow_history: ''
+allow_history: private_tempstore
+chat_memory_settings:
+  expiry: 86400
+  max_messages: 0
 error_message: 'I am sorry, something went terribly wrong. Please try to ask me again.'
 specific_error_messages:
   AiBadRequestException: ''

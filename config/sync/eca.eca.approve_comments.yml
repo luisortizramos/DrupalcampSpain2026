@@ -12,7 +12,7 @@ dependencies:
 third_party_settings:
   modeler_api:
     modeler_id: workflow_modeler
-    data: 'hash:2ef5fab6be56b7c8506f51e5d0d15554'
+    data: 'hash:70e7da70857c5f6172602407ddd99da7'
     label: 'Aprobar comentarios'
 id: approve_comments
 weight: 0

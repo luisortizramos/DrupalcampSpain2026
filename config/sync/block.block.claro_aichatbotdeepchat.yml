@@ -9,7 +9,7 @@ dependencies:
 id: claro_aichatbotdeepchat
 theme: claro
 region: content
-weight: 0
+weight: -1
 provider: null
 plugin: ai_deepchat_block
 settings:

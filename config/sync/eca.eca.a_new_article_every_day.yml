@@ -23,7 +23,7 @@ dependencies:
 third_party_settings:
   modeler_api:
     modeler_id: workflow_modeler
-    data: 'hash:deaff1d9cf0bc591150382ea17e3d209'
+    data: 'hash:4da1b5fe09860f5766aee3f455fdd03c'
     label: 'Un nuevo artículo cada dia'
 id: a_new_article_every_day
 weight: 0
